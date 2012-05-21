@@ -1,0 +1,19 @@
+{% if image_url %}
+{% set firstframe = frames[0] %}
+#sprite {
+	width: {{image_width}}px;
+	height: {{image_height}}px;
+	-webkit-animation-duration: 1000ms;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: step-start;
+	-webkit-animation-name: animate01;
+	-moz-animation-duration: 1000ms;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: step-start;
+	-moz-animation-name: animate01;
+}
+
+@-webkit-keyframes animate01 {
+{% for frame in frames %}	{{(loop.index0/(loop.length-1)*100)|round(2)}}%    { background: url(data:image/gif;base64,{{ frame }}) 0 0; }
+{% endfor %}}
+{% endif %}    
