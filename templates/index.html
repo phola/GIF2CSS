@@ -3,102 +3,81 @@
 
 	{% if false and frames %}
 	<div id="ad">
-		<script type="text/javascript"><!--
-		google_ad_client = "ca-pub-3136501873416282";
-		/* gif-explode-result */
-		google_ad_slot = "5258965912";
-		google_ad_width = 728;
-		google_ad_height = 90;
-		//-->
-		</script>
-		<script type="text/javascript"
-		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-		</script>
+	
 	</div>
 	{% endif %}
 
-	<h2>Extract single frame images from animated gif image files!</h2>
 	
 	<section>
 		
-    <div class="options">
-      <div class="option">
-        <h3>From the web:</h3>
-        <form id="main_form" action="/" method="post">
-          <p>Paste the URL of the image here:</p> 
-          <input  type="url" 
-              name="image_url" 
-              placeholder="Image URL" 
-              autofocus="autofocus" 
-              {% if image_url %}
-                value="{{image_url}}"
-              {% endif %}/>
-          <input type="submit" value="Fetch" />
-        </form>
-      </div>
-      <div class="option right">
-        <h3>From your computer:</h3>
-        <p>
-          1. Upload your image to <a href="http://imgur.com">Imgur</a>.
-        <p>
-        <p>
-          2. Copy &amp; Paste your Imgur image URL in "From the web" form to the left
-          of this box.
-        </p>
-        <p>
-          Note: Your Imgur URL will look something like this: http://i.imgur.com/aXNfp.gif
-        </p>
-      </div>
-    </div>
-    
-    {% if not frames %}
-      <div class="options">
-        <div class="option">
-          <h3>Confused?</h3>
-          <p>
-            See it in action:
-          </p>
-          <p>
-            <a href="/http://i.imgur.com/aXNfp.gif">Click here to view the demo!</a>
-          </p>
-        </div>
-        <div class="option right">
-          <h3>The Bookmarklet</h3>
-          <p>
-            Drag this link to your browser's bookmark bar.
-            Use when you're viewing a gif directly. (eg: Your address bar says 'http://example.com/someImage.gif')
-          </p>
-          <p>
-            <a href="javascript:(function%20(){window.location.href='http://gif-explode.com/'+window.location.href;}());">GIF-Explode</a>
-          </p>
-          </p>
-        </div>
-      </div>
-    {% endif %}
+       <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">         
+          <div class="row-fluid">
+            <div class="span3">
+              <h2> &raquo; source</h2>
+            <div class="input-append">                    
+                <input type="text" size="200" class="span9" style="float:left;" placeholder="Enter GIF URL">                
+                <button class="btn btn-primary" type="button">
+                    <i class="icon-picture icon-white"></i> Go!
+                </button> 
+                <form id="main_form" action="/" method="post">
+                  <p>Paste the URL of the image here:</p> 
+                  <input  type="url" 
+                      name="image_url" 
+                      placeholder="Image URL" 
+                      autofocus="autofocus" 
+                      {% if image_url %}
+                        value="{{image_url}}"
+                      {% endif %}/>
+                  <input type="submit" value="Fetch" />
+                </form>      
+                {% if image_url %}
+                    Original image:<br />
+                    <img src="{{ image_url }}" /> <br />
+                  {% endif %}         
+            </div>
+
+            <div>
+               <h3>Some examples<small> (from Flickr) </small></h3>
+              <ul id="images" class="thumbnails"></ul>      
+            </div>
+
+            </div><!--/span-->
+            <div class="span6">   
+              <h2> &raquo; CSS</h2>
+            <div>
+              <textarea class="span12 input" id="codemirror" name="codemirror">
+                {% include 'csseditor.html' %}
+              </textarea>
+            </div>
+
+            </div><!--/span-->
+            <div class="span3">
+              <h2> &raquo; result</h2>
+              <div id="sprite"></div>
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">            
+            <div class="span9">
+            
+            </div><!--/span-->
+            <div class="span3">
+              <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Credits</li>
+              <li><a href="#">gif explode</a></li>
+              <li><a href="#">sprite animation</a></li>
+              <li><a href="#">bootstrap</a></li>
+            </ul>
+          </div><!--/.well -->
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
 
 	</section>
 	
-	{% if frames %}
 	
-		{% if image_url %}
-			<aside id="link_to_page">
-				Link to this page:<br />
-				<input type="text" value="http://gif-explode.com/{{ image_url }}" />
-				<br /><br />
-				<span  class='st_tumblr' ></span><span  class='st_reddit' ></span><span  class='st_twitter' ></span><span  class='st_facebook' ></span><span  class='st_email' ></span><span  class='st_sharethis' ></span>
-			</aside>
-		{% endif %}
-	
-		<section>
-			{% if image_url %}
-				Original image:<br />
-				<img src="{{ image_url }}" /> <br />
-			{% endif %}
-			<br />
-			Image frames:<br />
-			{% for frame in frames %}
-				<img src="data:image/gif;base64,{{ frame }}" />
-			{% endfor %}
-		</section>
-  {% endif %}
 {% endblock %}

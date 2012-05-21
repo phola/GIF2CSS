@@ -18,10 +18,12 @@ def index(image_url=None):
         
     if image_url:
         
-        frames = _explode_image_url(image_url)
+        image_data = _explode_image_url(image_url)
                                 
         return render_template('index.html', 
-                               frames=frames,
+                               frames=image_data['frames'],
+                               image_width=image_data['size'][0],
+                               image_height=image_data['size'][1],
                                image_url=image_url)
                                           
     else:
@@ -36,9 +38,9 @@ def api():
 def api_explode():
     
     image_url = request.args['image_url']
-    frames = _explode_image_url(image_url)
+    image_data = _explode_image_url(image_url)
     
-    return jsonify(frames=frames)
+    return jsonify(image_data=image_data)
 
 @app.errorhandler(500)
 def general_error(e):
@@ -47,21 +49,22 @@ def general_error(e):
 
 def _explode_image_url(image_url):
 
-    frames = cache.get(image_url)
+    image_data = cache.get(image_url)
     
-    if frames is None:
+    if image_data is None:
         print "Nothing found in cache for %s" % image_url
         try:
             exploder = GifExplode(image_url)
-            frames = exploder.explode()
+            image_data = exploder.explode()
+
             print "Setting cache for %s" % image_url
-            cache.set(image_url, frames, timeout=5*60)
+            cache.set(image_url, image_data, timeout=5*60)
         except ValueError:
             abort(500)
     else:
         print "Using cache for %s" % image_url
     
-    return frames
+    return image_data
 
 
 if __name__ == "__main__":

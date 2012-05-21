@@ -8,7 +8,9 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/codemirror.css" rel="stylesheet">  
+    <link href="/static/css/my.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -20,50 +22,62 @@
     </style>   
   </head>
 
+  <body>
 
-
-
-
-
-	<body>
-		<div id="wrapper">
-			
-			<header>
-				<h1><a href="/">Gif Explode</a></h1>
-			</header>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">GIF > CSS</a>
+          <!--<div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> Username
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul>
+          </div>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 			
 			{% block body %}{% endblock %}
 			
-			<footer>
-				Written in <a href="http://flask.pocoo.org/">Flask</a>.  
-				Hosted on <a href="http://heroku.com">Heroku</a>.  
-				View the source on <a href="https://github.com/trg/GIF-Explode">Github</a>.
-				Developer? Check out the <a href="/api">API</a>.
-			</footer>
-			
-			<div id="links">
-				Need more image tools?  Check out <a href="http://imgops.com/">ImgOps</a>.<br />
-				Tools like Gif Explode could disappear from the web forever! <a href="http://americancensorship.org/">Stop SOPA</a><br />
-				Content prohibited by Heroku's <a href="http://policy.heroku.com/aup">Acceptable Use Policy</a> or applicable law is forbidden.
-		 	</div>
-			
-		</div>
-		
-		<script type="text/javascript">
+		 <hr>
 
-		  var _gaq = _gaq || [];
-		  //_gaq.push(['_setAccount', 'UA-26142178-1']);
-		  _gaq.push(['_trackPageview']);
+      <footer>
+        <p>&copy; Phola ltd 2012</p>
+      </footer>
 
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+    </div><!--/.fluid-container-->
 
-		</script>
-		
-		<script type="text/javascript">var switchTo5x=false;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'94d32865-7a2a-4df3-86eb-22c12a45aefa'});</script>
-		
-	</body>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/codemirror.js"></script>
+    <script src="/static/js/css.js"></script>
+
+    <script src="/static/js/app.js"></script>
+
+
+
+
+
+  </body>
 </html>

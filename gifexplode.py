@@ -8,16 +8,17 @@ class GifExplode:
         self._image_url = image_url
         self._image = None
         self._frames = []
+        self._size = None
         
     def explode(self):
-        """ Returns list of base64 encoded frames """
+        """ Returns list of base64 encoded frames and size in dictonary"""
         
         if not self._frames:
 
             self.__fetch_image()
 
             im = Image.open(self._image)
-
+            self._size = im.size
             try:
                 while True:
 
@@ -31,7 +32,10 @@ class GifExplode:
                 # called at end of every gif frame *sequence*:
                 self._image.close()
         
-        return self._frames
+        return {'frames':self._frames, 'size': self._size}
+
+    def size(self):
+        return self._size
         
     def __fetch_image(self):
         """ Fetches the image from the web, saves to instance var"""
